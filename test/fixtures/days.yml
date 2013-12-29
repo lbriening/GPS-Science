@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  weather_condition: MyString
+  temperature: 9.99
+  test_date: 2013-12-28
+  pressure: 9.99
+
+two:
+  weather_condition: MyString
+  temperature: 9.99
+  test_date: 2013-12-28
+  pressure: 9.99
