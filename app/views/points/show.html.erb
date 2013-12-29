@@ -1,0 +1,31 @@
+<%- model_class = Point -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:latitude) %>:</strong></dt>
+  <dd><%= @point.latitude %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:longitude) %>:</strong></dt>
+  <dd><%= @point.longitude %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:time_recorded) %>:</strong></dt>
+  <dd><%= @point.time_recorded %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:test_id) %>:</strong></dt>
+  <dd><%= @point.test_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:previous_point_id) %>:</strong></dt>
+  <dd><%= @point.previous_point_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:next_point_id) %>:</strong></dt>
+  <dd><%= @point.next_point_id %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              points_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_point_path(@point), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              point_path(@point),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

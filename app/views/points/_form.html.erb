@@ -1,0 +1,44 @@
+<%= form_for @point, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :latitude, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :latitude, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :longitude, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :longitude, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :time_recorded, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :time_recorded, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :test_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :test_id, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :previous_point_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :previous_point_id, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :next_point_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :next_point_id, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                points_path, :class => 'btn' %>
+  </div>
+<% end %>
