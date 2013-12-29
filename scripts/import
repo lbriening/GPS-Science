@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+
+if not defined?(Rails) then
+  exec("rails", "runner", __FILE__, *ARGV)
+end
+
+require 'gpx_importer.rb'
+
+test_id  = ARGV.shift
+filepath = ARGV.shift
+
+test = Test.find test_id
+if test.points.any?
+  test.points.delete_all
+  test.reload
+end
+
+file = File.open filepath
+doc  = REXML::Document.new file, :ignore_whitespace_nodes => :all
+
+importer = GpxImporter.new test, doc
+
+importer.import
+
+puts "Imported #{test.points.count} points into test #{test.name}"
+puts "Total distance #{test.distance}, total time #{test.time}"
