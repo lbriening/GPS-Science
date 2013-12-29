@@ -1,0 +1,20 @@
+<%= form_for @test_run, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :speed, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :speed, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :day_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :day_id, Day.all.collect {|d| [ d.test_date, d.id ] }, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                test_runs_path, :class => 'btn' %>
+  </div>
+<% end %>

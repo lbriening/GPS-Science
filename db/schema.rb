@@ -11,13 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131229002339) do
+ActiveRecord::Schema.define(version: 20131229003924) do
 
   create_table "days", force: true do |t|
     t.string   "weather_condition"
     t.decimal  "temperature"
     t.date     "test_date"
     t.decimal  "pressure"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "test_runs", force: true do |t|
+    t.string   "speed"
+    t.integer  "day_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
