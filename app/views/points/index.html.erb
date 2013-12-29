@@ -6,13 +6,14 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:latitude) %></th>
-      <th><%= model_class.human_attribute_name(:longitude) %></th>
-      <th><%= model_class.human_attribute_name(:time_recorded) %></th>
-      <th><%= model_class.human_attribute_name(:test_id) %></th>
-      <th><%= model_class.human_attribute_name(:previous_point_id) %></th>
-      <th><%= model_class.human_attribute_name(:next_point_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th>Day</th>
+      <th>Weather</th>
+      <th>Speed</th>
+      <th>Device</th>
+      <th>Total Time</th>
+      <th>Total Distance</th>
+      <th><%= model_class.human_attribute_name(:time) %></th>
+      <th><%= model_class.human_attribute_name(:distance) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -20,13 +21,14 @@
     <% @points.each do |point| %>
       <tr>
         <td><%= link_to point.id, point_path(point) %></td>
-        <td><%= point.latitude %></td>
-        <td><%= point.longitude %></td>
-        <td><%= point.time_recorded %></td>
-        <td><%= point.test_id %></td>
-        <td><%= point.previous_point_id %></td>
-        <td><%= point.next_point_id %></td>
-        <td><%=l point.created_at %></td>
+        <td><%= point.test.test_run.day.test_date %></td>
+        <td><%= point.test.test_run.day.weather_condition %></td>
+        <td><%= point.test.test_run.speed %></td>
+        <td><%= point.test.device_name %></td>
+        <td><%= point.test.time %></td>
+        <td><%= point.test.distance %></td>
+        <td><%= point.time %></td>
+        <td><%= point.distance %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_point_path(point), :class => 'btn btn-mini' %>

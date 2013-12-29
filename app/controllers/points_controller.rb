@@ -1,3 +1,5 @@
+require 'csv'
+
 class PointsController < ApplicationController
   before_action :set_point, only: [:show, :edit, :update, :destroy]
 
@@ -5,6 +7,11 @@ class PointsController < ApplicationController
   # GET /points.json
   def index
     @points = Point.all
+    respond_to do |format|
+      format.html { render action: 'index' }
+      format.json { @ponts.to_json }
+      format.csv { send_data csv(@points) }
+    end
   end
 
   # GET /points/1
@@ -62,6 +69,23 @@ class PointsController < ApplicationController
   end
 
   private
+    def csv(points)
+      CSV.generate do |csv|
+        csv << ["Id", "Day", "Weather", "Speed", "Device", "Total Time", "Total Distance", "Time", "Distance"]
+        points.each do |point|
+          csv << [point.id,
+                  point.test.test_run.day.test_date,
+                  point.test.test_run.day.weather_condition,
+                  point.test.test_run.speed,
+                  point.test.device_name,
+                  point.test.time,
+                  point.test.distance,
+                  point.time,
+                  point.distance]
+        end
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_point
       @point = Point.find(params[:id])

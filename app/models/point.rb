@@ -6,6 +6,14 @@ class Point < ActiveRecord::Base
 
   RADIUS = 6371
 
+  def time
+    if previous_point
+      time_recorded - previous_point.time_recorded
+    else
+      0
+    end
+  end
+
   def distance
     if previous_point
       distance_between previous_point, self
