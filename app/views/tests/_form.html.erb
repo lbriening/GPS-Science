@@ -11,18 +11,12 @@
       <%= f.select :test_run_id, TestRun.all.collect{|r| [r.name, r.id]}, :class => 'text_field' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :distance, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :distance, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :time, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :time, :class => 'text_field' %>
-    </div>
-  </div>
+<dl class="dl-horizontal">
+  <dt><strong><%= Test.human_attribute_name(:distance) %>:</strong></dt>
+  <dd><%= @test.distance %></dd>
+  <dt><strong><%= Test.human_attribute_name(:time) %>:</strong></dt>
+  <dd><%= @test.time %></dd>
+</dl>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
