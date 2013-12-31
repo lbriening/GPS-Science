@@ -8,9 +8,9 @@
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:device_name) %></th>
       <th><%= model_class.human_attribute_name(:test_run_id) %></th>
+      <th>Points</th>
       <th><%= model_class.human_attribute_name(:distance) %></th>
       <th><%= model_class.human_attribute_name(:time) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -19,10 +19,10 @@
       <tr>
         <td><%= link_to test.id, test_path(test) %></td>
         <td><%= test.device_name %></td>
-        <td><%= test.test_run_id %></td>
+        <td><%= test.test_run.name %></td>
+        <td><%= test.points.count%></td>
         <td><%= test.distance %></td>
         <td><%= test.time %></td>
-        <td><%=l test.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_test_path(test), :class => 'btn btn-mini' %>
