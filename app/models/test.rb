@@ -22,6 +22,7 @@ class Test < ActiveRecord::Base
   end
 
   def calculated_time
+    return 0 if points.none?
     points.last.time_recorded - points.first.time_recorded
   end
 

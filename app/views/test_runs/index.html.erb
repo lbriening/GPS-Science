@@ -8,7 +8,7 @@
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:speed) %></th>
       <th><%= model_class.human_attribute_name(:day_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th>Average Distacne</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -17,8 +17,8 @@
       <tr>
         <td><%= link_to test_run.id, test_run_path(test_run) %></td>
         <td><%= test_run.speed %></td>
-        <td><%= test_run.day_id %></td>
-        <td><%=l test_run.created_at %></td>
+        <td><%= test_run.day.test_date %></td>
+        <td><%= test_run.average_distance.round(4) %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_test_run_path(test_run), :class => 'btn btn-mini' %>

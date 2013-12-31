@@ -4,7 +4,7 @@ class TestsController < ApplicationController
   # GET /tests
   # GET /tests.json
   def index
-    @tests = Test.all
+    @tests = Test.order(:test_run_id, :id)
   end
 
   # GET /tests/1

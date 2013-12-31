@@ -8,6 +8,7 @@
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:device_name) %></th>
       <th><%= model_class.human_attribute_name(:test_run_id) %></th>
+      <th>Average Distance</th>
       <th>Points</th>
       <th><%= model_class.human_attribute_name(:distance) %></th>
       <th><%= model_class.human_attribute_name(:time) %></th>
@@ -20,8 +21,9 @@
         <td><%= link_to test.id, test_path(test) %></td>
         <td><%= test.device_name %></td>
         <td><%= test.test_run.name %></td>
+        <td><%= test.test_run.average_distance.round(4) %></td>
         <td><%= test.points.count%></td>
-        <td><%= test.distance %></td>
+        <td><%= test.distance.round(4) %></td>
         <td><%= test.time %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
