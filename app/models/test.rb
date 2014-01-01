@@ -7,6 +7,10 @@ class Test < ActiveRecord::Base
     [test_run && test_run.name, device_name].join(" - ")
   end
 
+  def deviation
+    distance - test_run.average_distance
+  end
+
   def update_distance
     update_attribute :distance, calculated_distance
   end

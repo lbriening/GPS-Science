@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131231183415) do
+ActiveRecord::Schema.define(version: 20131231212049) do
 
   create_table "days", force: true do |t|
     t.string   "weather_condition"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20131231183415) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "average_distance"
+    t.decimal  "standard_deviation"
   end
 
   create_table "tests", force: true do |t|

@@ -1,3 +1,5 @@
+require 'csv'
+
 class TestsController < ApplicationController
   before_action :set_test, only: [:show, :edit, :update, :destroy]
 
@@ -5,6 +7,11 @@ class TestsController < ApplicationController
   # GET /tests.json
   def index
     @tests = Test.order(:test_run_id, :id)
+    respond_to do |format|
+      format.html { render action: 'index' }
+      format.json { @ponts.to_json }
+      format.csv { send_data csv(@tests) }
+    end
   end
 
   # GET /tests/1
@@ -62,6 +69,28 @@ class TestsController < ApplicationController
   end
 
   private
+
+    def csv(tests)
+      CSV.generate do |csv|
+        csv << ["Id", "Day", "Weather", "Temperature", "Pressure", "Speed", "Device", "Points", "Time", "Average Distance", "Distance", "Deviation", "Standard Deviation"]
+        tests.each do |test|
+          csv << [test.id,
+                  test.test_run.day.test_date,
+                  test.test_run.day.weather_condition,
+                  test.test_run.day.temperature,
+                  test.test_run.day.pressure,
+                  test.test_run.speed,
+                  test.device_name,
+                  test.points.count,
+                  test.time,
+                  test.test_run.average_distance.round(4),
+                  test.distance.round(4),
+                  test.deviation.round(4),
+                  test.test_run.standard_deviation.round(4)]
+        end
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_test
       @test = Test.find(params[:id])
